@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
-# @Date    : 3/2/18
-# @Author  :
-
+# @Date    : 5/12/18
+# @Author  :HL_Wang
 import numpy as np
 np.random.seed(0)
 import math
@@ -11,8 +10,9 @@ class FFM_Node(object):
     '''
     通常x是高维稀疏向量，所以用链表来表示一个x，链表上的每个节点是个3元组(j,f,v)
     '''
+    #稀疏矩阵用元组存储节省存储空间
     __slots__ = ['j', 'f', 'v']  # 按元组（而不是字典）的方式来存储类的成员属性
-
+    #使用__slots__要注意，__slots__定义的属性仅对当前类实例起作用， 对继承的子类是不起作用的：
     def __init__(self, j, f, v):
         '''
         :param j: Feature index (0 to n-1)
@@ -115,8 +115,7 @@ class FFM(object):
         :return:
         '''
         for itr in range(max_echo):
-            print
-            "echo", itr
+            print("echo", itr)
             y_sum = 0.0
             y_square_sum = 0.0
             err_square_sum = 0.0  # 误差平方和

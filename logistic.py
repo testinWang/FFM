@@ -13,7 +13,7 @@ class Logistic(object):
         self.exp_scale = 0.001
         self.exp_intv = int(exp_max / self.exp_scale)
         self.exp_table = [0.0] * self.exp_intv
-        for i in xrange(self.exp_intv):
+        for i in range(self.exp_intv):
             x = self.exp_scale * i
             exp = math.exp(x)
             self.exp_table[i] = exp / (1.0 + exp)
@@ -42,6 +42,6 @@ class Logistic(object):
 
 if __name__ == '__main__':
     log = Logistic()
-    for x in np.arange(-20, 20, 0.1):  # xrange()中的step不能是小数，所以只好手numpy.arange()
+    for x in np.arange(-20, 20, 1):  # xrange()中的step不能是小数，所以只好手numpy.arange()
         y = log.decide(x)
         print(x, y, log.decide_by_tanh(x) - y, log.decide_by_table(x) - y)
